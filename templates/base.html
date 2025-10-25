@@ -2,19 +2,119 @@
 <html lang="pt-br">
 <head>
     <meta charset="UTF-8">
-    <title>{% block title %}Lista de Alunos{% endblock %}</title>
+    <title>{% block title %}CRUD Alunos{% endblock %}</title>
+    <style>
+        /* Reset básico */
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: #f4f6f8;
+            color: #333;
+            padding: 20px;
+        }
+
+        header {
+            background-color: #007BFF;
+            color: white;
+            padding: 20px;
+            border-radius: 8px;
+            margin-bottom: 30px;
+        }
+
+        header h1 {
+            margin-bottom: 10px;
+        }
+
+        nav a {
+            color: white;
+            text-decoration: none;
+            margin-right: 15px;
+            font-weight: bold;
+        }
+
+        nav a:hover {
+            text-decoration: underline;
+        }
+
+        main {
+            background-color: white;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 15px;
+        }
+
+        th, td {
+            padding: 12px;
+            border-bottom: 1px solid #ddd;
+            text-align: left;
+        }
+
+        th {
+            background-color: #007BFF;
+            color: white;
+        }
+
+        tr:hover {
+            background-color: #f1f1f1;
+        }
+
+        button, input[type="submit"] {
+            background-color: #007BFF;
+            color: white;
+            border: none;
+            padding: 8px 15px;
+            border-radius: 4px;
+            cursor: pointer;
+            font-weight: bold;
+        }
+
+        button:hover, input[type="submit"]:hover {
+            background-color: #0056b3;
+        }
+
+        .success {
+            color: green;
+            margin-bottom: 15px;
+        }
+
+        a.action-link {
+            color: #007BFF;
+            text-decoration: none;
+            margin-right: 10px;
+            font-weight: bold;
+        }
+
+        a.action-link:hover {
+            text-decoration: underline;
+        }
+    </style>
 </head>
 <body>
     <header>
-        <h1>Lista de Alunos</h1>
+        <h1>CRUD de Alunos</h1>
+        <nav>
+            <a href="{% url 'lista_alunos' %}">Lista</a>
+            <a href="{% url 'aluno_create' %}">Novo Aluno</a>
+        </nav>
     </header>
+
+    {% if messages %}
+        <ul>
+            {% for message in messages %}
+                <li class="success">{{ message }}</li>
+            {% endfor %}
+        </ul>
+    {% endif %}
 
     <main>
         {% block content %}{% endblock %}
     </main>
-
-    <footer>
-        <p>Desenvolvido por Emerson Rocha</p>
-    </footer>
 </body>
 </html>
